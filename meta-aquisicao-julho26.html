@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meta Aquisição — Julho 2026 | Appmax</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --bg:#07050f;--bg2:#0f0b1e;--bg3:#181030;
+      --border:#9060e020;--border2:#b080ff40;
+      --txt:#ffffff;--txt2:#d4b8ff;--txt3:#8866cc;
+      --lilac:#d97dff;--lilac2:#bf55ff;--soft:#f0d8ff;--soft2:#e8ccff;--mint:#cc99ff;
+      --amber:#ffc93c;--red:#ff5555;--green:#44ee88;
+    }
+    html,body{width:100%;height:100%;background:var(--bg);overflow:hidden;margin:0;padding:0}
+    .tv{
+      background:var(--bg);color:var(--txt);
+      font-family:'Inter',sans-serif;
+      padding:20px 40px 16px;
+      width:1920px;height:1080px;
+      transform-origin:top left;
+      position:relative;
+      display:flex;flex-direction:column;gap:0;
+    }
+    .tv::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#6020c0,#c060ff,#f0d0ff,#c060ff,#6020c0)}
+
+    /* HEADER */
+    .hdr{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-shrink:0;margin-bottom:12px}
+    .hdr-left{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+    .logo-pill{display:inline-flex;align-items:center;gap:6px;background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:4px 12px 4px 8px;width:fit-content;margin-bottom:2px}
+    .logo-dot{width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#d97dff,#6020c0);flex-shrink:0}
+    .logo-name{font-size:13px;font-weight:500;color:var(--lilac);letter-spacing:.08em;text-transform:uppercase}
+    .hdr-title{font-size:28px;font-weight:500;color:var(--txt);letter-spacing:-.02em;line-height:1.2;white-space:nowrap}
+    .hdr-sub{font-size:14px;color:var(--txt2);white-space:nowrap}
+    .du-box{flex-shrink:0;background:var(--bg3);border:1px solid var(--border2);border-radius:10px;padding:6px 16px;display:flex;align-items:center;gap:8px}
+    .du-num{font-size:20px;font-weight:500;line-height:1;color:var(--lilac)}
+    .du-lbl{font-size:12px;color:var(--txt2);white-space:nowrap}
+
+    /* BARRA GLOBAL */
+    .global-prog{flex-shrink:0;margin-bottom:12px}
+    .gp-hdr{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+    .gp-lbl{font-size:15px;font-weight:500;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em}
+    .gp-pct{font-size:28px;font-weight:500;color:var(--lilac)}
+    .gp-track{height:36px;background:var(--bg3);border-radius:18px;overflow:hidden;border:1px solid var(--border2);position:relative}
+    .gp-fill{height:36px;border-radius:18px;background:linear-gradient(90deg,#6020c0,#c060ff,#f0d0ff);transition:width .8s ease}
+    .gp-marker{position:absolute;top:0;height:36px;width:3px;background:rgba(255,255,255,.5)}
+    .gp-labels{display:flex;justify-content:space-between;margin-top:6px}
+    .gp-ms{font-size:12px;color:var(--txt3)}
+    .gp-ms.hi{color:var(--txt2)}
+
+    /* BANNER ROL */
+    .rol-banner{display:grid;grid-template-columns:repeat(6,1fr);background:var(--bg2);border:1px solid var(--border2);border-radius:14px;overflow:hidden;flex-shrink:0;margin-bottom:12px}
+    .rb{padding:20px 24px;border-right:1px solid var(--border2);display:flex;flex-direction:column;gap:6px}
+    .rb:last-child{border-right:none}
+    .rb-lbl{font-size:14px;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;white-space:nowrap;font-weight:500}
+    .rb-val{font-size:38px;font-weight:500;line-height:1.1;white-space:nowrap}
+    .rb-sub{font-size:14px;color:var(--txt3);white-space:nowrap}
+
+    .cc{background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:16px 20px}
+    .cc-lbl{font-size:13px;color:var(--txt2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px;white-space:nowrap;font-weight:500}
+    .cc-val{font-size:32px;font-weight:500;white-space:nowrap}
+    .cc-sub{font-size:13px;color:var(--txt3);margin-top:4px;white-space:nowrap}
+    .prog{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin-top:10px;border:0.5px solid var(--border)}
+    .prog-fill{height:8px;border-radius:4px}
+
+    /* ÁREAS */
+    .areas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;flex:1;min-height:0;align-items:stretch;margin-bottom:12px}
+    .area{background:var(--bg2);border:1px solid var(--border2);border-radius:14px;padding:20px;display:flex;flex-direction:column;gap:14px;overflow:hidden;height:100%}
+    .area.ps{background:linear-gradient(150deg,#160a2e,#0f0b1e);border-color:#d97dff40}
+    .area .a-subs{flex:1;align-content:start}
+
+    /* CONSOLIDADO (abaixo dos cards) */
+    .consol{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;flex-shrink:0}
+    /* CARD HEADER */
+    .a-hdr{display:flex;justify-content:space-between;align-items:center;gap:4px}
+    .a-name{font-size:15px;font-weight:500;text-transform:uppercase;letter-spacing:.09em;white-space:nowrap}
+    /* TRIO META · REALIZADO · PROJETADO */
+    .a-trio{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;background:var(--bg3);border:0.5px solid var(--border2);border-radius:12px;overflow:hidden}
+    .a-trio-item{display:flex;flex-direction:column;gap:5px;padding:14px 16px;border-right:0.5px solid var(--border2)}
+    .a-trio-item:last-child{border-right:none}
+    .a-trio-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;font-weight:500;white-space:nowrap;color:var(--txt2)}
+    .a-trio-val{font-size:28px;font-weight:500;line-height:1;white-space:nowrap}
+    .a-trio-sub{font-size:10px;color:var(--txt3);white-space:nowrap}
+    /* BARRA — mais grossa e destacada */
+    .a-bar-wrap{display:flex;flex-direction:column;gap:6px}
+    .a-bar-track{height:26px;background:var(--bg3);border-radius:13px;overflow:hidden;border:1px solid var(--border2);position:relative}
+    .a-bar-fill{height:26px;border-radius:13px;transition:width .8s ease}
+    .a-bar-pct{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:13px;font-weight:600;color:var(--txt);white-space:nowrap}
+    .a-bar-lbls{display:flex;justify-content:space-between}
+    .a-bar-lbls span{font-size:11px;color:var(--txt3);white-space:nowrap}
+    /* SUB INDICADORES */
+    .a-subs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .a-sub{background:var(--bg3);border:0.5px solid var(--border2);border-radius:8px;padding:10px 12px}
+    .a-sub-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px;white-space:nowrap;font-weight:500}
+    .a-sub-val{font-size:16px;font-weight:500;white-space:nowrap}
+    .a-sub-tgt{font-size:10px;color:var(--txt3);white-space:nowrap;margin-top:2px}
+    .mini-track{height:3px;background:#ffffff10;border-radius:2px;overflow:hidden;margin-top:5px}
+    .mini-fill{height:3px;border-radius:2px}
+    /* ATINGIMENTO ATUAL + PROJETADO */
+    .a-ating{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .a-ating-item{background:var(--bg3);border:0.5px solid var(--border2);border-radius:8px;padding:10px 14px;display:flex;flex-direction:column;gap:3px}
+    .a-ating-lbl{font-size:10px;color:var(--txt2);text-transform:uppercase;letter-spacing:.06em;font-weight:500;white-space:nowrap}
+    .a-ating-val{font-size:26px;font-weight:500;line-height:1;white-space:nowrap}
+    .a-ating-sub{font-size:10px;color:var(--txt3);white-space:nowrap}
+    /* RITMO */
+    .a-ritmo{background:var(--bg3);border:0.5px solid var(--border2);border-radius:8px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .a-ritmo-lbl{font-size:10px;color:var(--txt3);white-space:nowrap}
+    .a-ritmo-val{font-size:13px;font-weight:500;color:var(--txt2);white-space:nowrap}
+    .badge{font-size:12px;padding:4px 12px;border-radius:10px;font-weight:500;white-space:nowrap;flex-shrink:0}
+    .b-hidden{display:none}
+    .b-wait{background:#201540;color:var(--txt2);border:1px solid var(--border2)}
+    .b-ok{background:#0a2a14;color:#44ee88;border:1px solid #44ee8840}
+    .b-warn{background:#2a1800;color:#ffc93c;border:1px solid #ffc93c40}
+    .b-no{background:#2a0808;color:#ff5555;border:1px solid #ff555540}
+
+    /* FOOTER */
+    .footer{display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border2);flex-shrink:0}
+    .footer-note{font-size:11px;color:var(--txt3)}
+    .legend{display:flex;gap:18px}
+    .leg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--txt2)}
+    .leg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+  </style>
+</head>
+<body>
+<div class="tv" id="tvRoot">
+
+  <!-- HEADER -->
+  <div class="hdr">
+    <div class="hdr-left">
+      <div class="logo-pill"><div class="logo-dot"></div><div class="logo-name">Appmax</div></div>
+      <div class="hdr-title">Meta Aquisição — Julho 2026</div>
+      <div class="hdr-sub">Outbound TR 1,2% · Inbound TR 3,3% · Parcerias TR 2% · Quebra 60% · 23 dias úteis</div>
+    </div>
+    <div class="du-box">
+      <div class="du-num" id="duNum">1</div>
+      <div class="du-lbl">de 23 dias úteis</div>
+    </div>
+  </div>
+
+  <!-- BARRA GLOBAL — largura total -->
+  <div class="global-prog">
+    <div class="gp-hdr">
+      <div class="gp-lbl">Progresso ROL consolidado — meta R$ 992k</div>
+      <div class="gp-pct" id="gpPct">0%</div>
+    </div>
+    <div class="gp-track">
+      <div class="gp-fill" id="gpFill" style="width:0%"></div>
+      <div class="gp-marker" id="gpMarker" style="left:0%"></div>
+    </div>
+    <div class="gp-labels">
+      <span class="gp-ms">0</span>
+      <span class="gp-ms">25% — R$ 248k</span>
+      <span class="gp-ms">50% — R$ 496k</span>
+      <span class="gp-ms">75% — R$ 744k</span>
+      <span class="gp-ms hi">Meta R$ 992k</span>
+    </div>
+  </div>
+
+  <!-- BANNER -->
+  <div class="rol-banner">
+    <div class="rb">
+      <div class="rb-lbl">ROL Projetada</div>
+      <div class="rb-val" style="color:var(--lilac)" id="rolReal">R$ 0</div>
+      <div class="rb-sub" id="rolPct">0% da meta</div>
+    </div>
+    <div class="rb">
+      <div class="rb-lbl">Meta ROL</div>
+      <div class="rb-val" style="color:var(--txt)">R$ 992k</div>
+      <div class="rb-sub">Outbound + Inbound + Parcerias</div>
+    </div>
+    <div class="rb">
+      <div class="rb-lbl">Falta para a meta</div>
+      <div class="rb-val" style="color:var(--soft2)" id="rolFalta">R$ 992k</div>
+      <div class="rb-sub" id="rolDia">R$ 43,1k/dia necessário</div>
+    </div>
+    <div class="rb">
+      <div class="rb-lbl">Projeção do mês</div>
+      <div class="rb-val" style="color:var(--soft2)" id="rolRitmo">—</div>
+      <div class="rb-sub" id="rolRitmoSub">mantendo ritmo atual</div>
+    </div>
+    <div class="rb">
+      <div class="rb-lbl">Reuniões realizadas</div>
+      <div class="rb-val" style="color:var(--mint)" id="rolSal">0</div>
+      <div class="rb-sub">de 897 · meta 39/dia</div>
+    </div>
+    <div class="rb">
+      <div class="rb-lbl">Projeção — Reuniões</div>
+      <div class="rb-val" style="color:var(--mint)" id="salRitmo">—</div>
+      <div class="rb-sub" id="salRitmoSub">por dia útil</div>
+    </div>
+  </div>
+
+  <!-- ÁREAS -->
+  <div class="areas">
+
+    <!-- OUTBOUND -->
+    <div class="area">
+      <div class="a-hdr">
+        <div class="a-name" style="color:var(--soft)">Outbound</div>
+        <div class="badge b-hidden" id="obStatus"></div>
+      </div>
+      <div class="a-trio">
+        <div class="a-trio-item"><div class="a-trio-lbl">Meta</div><div class="a-trio-val" style="color:var(--txt2)">R$ 597k</div><div class="a-trio-sub">Super: R$ 710k</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Realizado</div><div class="a-trio-val" style="color:var(--txt)" id="obRol">R$ 0</div><div class="a-trio-sub" id="obPct">0% da meta</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Projeção mês</div><div class="a-trio-val" style="color:var(--lilac)" id="obProj">—</div><div class="a-trio-sub">ritmo atual</div></div>
+      </div>
+      <div class="a-bar-wrap">
+        <div class="a-bar-track">
+          <div class="a-bar-fill" id="obBar" style="width:0%;background:linear-gradient(90deg,#6020c0,#d97dff)"></div><span class="a-bar-pct" id="obBarPct"></span>
+        </div>
+        <div class="a-bar-lbls"><span>R$ 0</span><span>R$ 597k</span><span>R$ 710k</span></div>
+      </div>
+      <div class="a-subs">
+        <div class="a-sub"><div class="a-sub-lbl">TPV ganho</div><div class="a-sub-val" style="color:var(--lilac)" id="obTpv">R$ 0</div><div class="a-sub-tgt">Meta R$ 82,9M</div><div class="mini-track"><div class="mini-fill" id="obTpvBar" style="width:0%;background:var(--lilac)"></div></div></div>
+        <div class="a-sub"><div class="a-sub-lbl">Negócios</div><div class="a-sub-val" style="color:var(--lilac)" id="obGanhos">0</div><div class="a-sub-tgt">Meta 276</div><div class="mini-track"><div class="mini-fill" id="obGanhosBar" style="width:0%;background:var(--lilac)"></div></div></div>
+      </div>
+      <div class="a-ating">
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento atual</div><div class="a-ating-val" style="color:var(--lilac)" id="obAtingReal">—</div><div class="a-ating-sub">do mês acumulado</div></div>
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento projetado</div><div class="a-ating-val" id="obAtingProj">—</div><div class="a-ating-sub">mantendo ritmo atual</div></div>
+      </div>
+      <div class="a-ritmo"><div class="a-ritmo-lbl">Ritmo/dia necessário</div><div class="a-ritmo-val">12 negócios · R$ 3,60M TPV</div></div>
+    </div>
+
+    <!-- INBOUND -->
+    <div class="area">
+      <div class="a-hdr">
+        <div class="a-name" style="color:var(--soft2)">Inbound</div>
+        <div class="badge b-hidden" id="ibStatus"></div>
+      </div>
+      <div class="a-trio">
+        <div class="a-trio-item"><div class="a-trio-lbl">Meta</div><div class="a-trio-val" style="color:var(--txt2)">R$ 355k</div><div class="a-trio-sub">TR 3,3%</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Realizado</div><div class="a-trio-val" style="color:var(--txt)" id="ibRol">R$ 0</div><div class="a-trio-sub" id="ibPct">0% da meta</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Projeção mês</div><div class="a-trio-val" style="color:var(--soft2)" id="ibProj">—</div><div class="a-trio-sub">ritmo atual</div></div>
+      </div>
+      <div class="a-bar-wrap">
+        <div class="a-bar-track">
+          <div class="a-bar-fill" id="ibBar" style="width:0%;background:linear-gradient(90deg,#5010a0,#b070ff)"></div><span class="a-bar-pct" id="ibBarPct"></span>
+        </div>
+        <div class="a-bar-lbls"><span>R$ 0</span><span>R$ 355k</span></div>
+      </div>
+      <div class="a-subs">
+        <div class="a-sub"><div class="a-sub-lbl">TPV ganho</div><div class="a-sub-val" style="color:var(--soft2)" id="ibTpv">R$ 0</div><div class="a-sub-tgt">Meta R$ 17,9M</div><div class="mini-track"><div class="mini-fill" id="ibTpvBar" style="width:0%;background:var(--soft2)"></div></div></div>
+        <div class="a-sub"><div class="a-sub-lbl">Negócios</div><div class="a-sub-val" style="color:var(--soft2)" id="ibGanhos">0</div><div class="a-sub-tgt">Meta 239</div><div class="mini-track"><div class="mini-fill" id="ibGanhosBar" style="width:0%;background:var(--soft2)"></div></div></div>
+      </div>
+      <div class="a-ating">
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento atual</div><div class="a-ating-val" style="color:var(--soft2)" id="ibAtingReal">—</div><div class="a-ating-sub">do mês acumulado</div></div>
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento projetado</div><div class="a-ating-val" id="ibAtingProj">—</div><div class="a-ating-sub">mantendo ritmo atual</div></div>
+      </div>
+      <div class="a-ritmo"><div class="a-ritmo-lbl">Ritmo/dia necessário</div><div class="a-ritmo-val">10 negócios · R$ 779k TPV</div></div>
+    </div>
+
+    <!-- PARCERIAS -->
+    <div class="area">
+      <div class="a-hdr">
+        <div class="a-name" style="color:var(--mint)">Parcerias</div>
+        <div class="badge b-hidden" id="pcStatus"></div>
+      </div>
+      <div class="a-trio">
+        <div class="a-trio-item"><div class="a-trio-lbl">Meta</div><div class="a-trio-val" style="color:var(--txt2)">R$ 40k</div><div class="a-trio-sub">TR 2%</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Realizado</div><div class="a-trio-val" style="color:var(--txt)" id="pcRol">R$ 0</div><div class="a-trio-sub" id="pcPct">0% da meta</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Projeção mês</div><div class="a-trio-val" style="color:var(--mint)" id="pcProj">—</div><div class="a-trio-sub">ritmo atual</div></div>
+      </div>
+      <div class="a-bar-wrap">
+        <div class="a-bar-track">
+          <div class="a-bar-fill" id="pcBar" style="width:0%;background:linear-gradient(90deg,#4010a0,#cc99ff)"></div><span class="a-bar-pct" id="pcBarPct"></span>
+        </div>
+        <div class="a-bar-lbls"><span>R$ 0</span><span>R$ 40k</span></div>
+      </div>
+      <div class="a-subs">
+        <div class="a-sub"><div class="a-sub-lbl">TPV ganho</div><div class="a-sub-val" style="color:var(--mint)" id="pcTpv">R$ 0</div><div class="a-sub-tgt">Meta R$ 3,33M</div><div class="mini-track"><div class="mini-fill" id="pcTpvBar" style="width:0%;background:var(--mint)"></div></div></div>
+        <div class="a-sub"><div class="a-sub-lbl">Negócios</div><div class="a-sub-val" style="color:var(--mint)" id="pcGanhos">0</div><div class="a-sub-tgt">Meta 44</div><div class="mini-track"><div class="mini-fill" id="pcGanhosBar" style="width:0%;background:var(--mint)"></div></div></div>
+      </div>
+      <div class="a-ating">
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento atual</div><div class="a-ating-val" style="color:var(--mint)" id="pcAtingReal">—</div><div class="a-ating-sub">do mês acumulado</div></div>
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento projetado</div><div class="a-ating-val" id="pcAtingProj">—</div><div class="a-ating-sub">mantendo ritmo atual</div></div>
+      </div>
+      <div class="a-ritmo"><div class="a-ritmo-lbl">Ritmo/dia necessário</div><div class="a-ritmo-val">2 negócios · R$ 145k TPV</div></div>
+    </div>
+
+    <!-- PRÉ-VENDAS -->
+    <div class="area ps">
+      <div class="a-hdr">
+        <div class="a-name" style="color:var(--lilac)">Pré-vendas</div>
+        <div class="badge b-hidden" id="pvStatus"></div>
+      </div>
+      <div class="a-trio">
+        <div class="a-trio-item"><div class="a-trio-lbl">Meta</div><div class="a-trio-val" style="color:var(--txt2)">897</div><div class="a-trio-sub">reuniões no mês</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Realizadas</div><div class="a-trio-val" style="color:var(--txt)" id="pvSal">0</div><div class="a-trio-sub" id="pvPct">0% da meta</div></div>
+        <div class="a-trio-item"><div class="a-trio-lbl">Projeção mês</div><div class="a-trio-val" style="color:var(--lilac)" id="pvProj">—</div><div class="a-trio-sub">ritmo atual</div></div>
+      </div>
+      <div class="a-bar-wrap">
+        <div class="a-bar-track">
+          <div class="a-bar-fill" id="pvBar" style="width:0%;background:linear-gradient(90deg,#6020c0,#f0d0ff)"></div><span class="a-bar-pct" id="pvBarPct"></span>
+        </div>
+        <div class="a-bar-lbls"><span>0</span><span>897 reuniões</span></div>
+      </div>
+      <div class="a-subs">
+        <div class="a-sub"><div class="a-sub-lbl">Reuniões hoje</div><div class="a-sub-val" style="color:var(--lilac)" id="pvHoje">—</div><div class="a-sub-tgt">Necessário 39/dia</div><div class="mini-track"><div class="mini-fill" id="pvHojeBar" style="width:0%;background:var(--lilac)"></div></div></div>
+        <div class="a-sub"><div class="a-sub-lbl">Faltam</div><div class="a-sub-val" style="color:var(--lilac)" id="pvFalta">897</div><div class="a-sub-tgt"><span id="pvDuRest">23</span> DU restantes</div></div>
+      </div>
+      <div class="a-ating">
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento atual</div><div class="a-ating-val" style="color:var(--lilac)" id="pvAtingReal">—</div><div class="a-ating-sub">do mês acumulado</div></div>
+        <div class="a-ating-item"><div class="a-ating-lbl">Atingimento projetado</div><div class="a-ating-val" id="pvAtingProj">—</div><div class="a-ating-sub">mantendo ritmo atual</div></div>
+      </div>
+      <div class="a-ritmo"><div class="a-ritmo-lbl">Ritmo/dia necessário</div><div class="a-ritmo-val">39 reuniões/dia</div></div>
+    </div>
+
+  </div>
+
+  <!-- CONSOLIDADO -->
+  <div class="consol">
+    <div class="cc">
+      <div class="cc-lbl">TPV ganho total</div>
+      <div class="cc-val" id="cTpv" style="color:var(--soft)">R$ 0</div>
+      <div class="cc-sub">Meta R$ 104,1M</div>
+      <div class="prog"><div class="prog-fill" id="cTpvBar" style="width:0%;background:var(--lilac)"></div></div>
+    </div>
+    <div class="cc">
+      <div class="cc-lbl">Negócios ganhos</div>
+      <div class="cc-val" id="cGanhos" style="color:var(--soft2)">0</div>
+      <div class="cc-sub">Meta 559 negócios</div>
+      <div class="prog"><div class="prog-fill" id="cGanhosBar" style="width:0%;background:var(--lilac2)"></div></div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-note">Meta Aquisição Julho 2026 · Appmax</div>
+    <div class="legend">
+      <div class="leg"><div class="leg-dot" style="background:#44ee88"></div>No ritmo</div>
+      <div class="leg"><div class="leg-dot" style="background:#ffc93c"></div>Atenção</div>
+      <div class="leg"><div class="leg-dot" style="background:#ff5555"></div>Abaixo do ritmo</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  // ─── DADOS — edite aqui diariamente ───────────────────────────────────────
+  const DATA = {
+    du: 7,                          // dias úteis passados (0 a 23)
+    ob: { rol: 106000, tpv: 12833333, ganhos: 53 },  // Outbound — TPV RR 7,7M ÷ 60% = 12,8M
+    ib: { rol: 70300,  tpv: 4000000,  ganhos: 50 },  // Inbound — TPV RR 2,4M ÷ 60% = 4M
+    pc: { rol: 3100,   tpv: 385000,   ganhos: 2  },  // Parcerias — TPV RR 231k ÷ 60% = 385k
+    pv: { sal: 163, hoje: 46 }              // Pré-vendas: acumulado e do dia
+  };
+  // ──────────────────────────────────────────────────────────────────────────
+
+  const M = {
+    ob:    { rol: 597000, super: 710000, tpv: 82900000, ganhos: 276 },
+    ib:    { rol: 355000, tpv: 17900000, ganhos: 239 },
+    pc:    { rol: 40000,  tpv: 3330000,  ganhos: 44 },
+    pv:    { sal: 897 },
+    total: { rol: 992000, tpv: 104100000, ganhos: 559 },
+    du: 23
+  };
+
+  function fmt(v) {
+    if (v >= 1000000) return 'R$ ' + (v / 1000000).toFixed(1) + 'M';
+    if (v >= 1000)    return 'R$ ' + Math.round(v / 1000) + 'k';
+    return 'R$ ' + Math.round(v).toLocaleString('pt-BR');
+  }
+  function bw(v, m)  { return Math.min(97, v / m * 100) + '%'; }
+  function pct(v, m) { return Math.min(100, Math.round(v / m * 100)) + '%'; }
+
+  function status(real, meta, duPass) {
+    if (duPass === 0) return ['b-hidden', ''];
+    const r = real / (meta * duPass / M.du);
+    if (r >= 0.95) return ['b-ok',   'No ritmo ✓'];
+    if (r >= 0.75) return ['b-warn', 'Atenção'];
+    return ['b-no', 'Abaixo'];
+  }
+  function setS(id, real, meta) {
+    const [c, l] = status(real, meta, DATA.du);
+    const el = document.getElementById(id);
+    el.className = 'badge ' + c;
+    el.textContent = l;
+  }
+
+  function render() {
+    const d = DATA;
+    document.getElementById('duNum').textContent = d.du;
+
+    const tRol  = d.ob.rol + d.ib.rol + d.pc.rol;
+    const tTpv  = d.ob.tpv + d.ib.tpv + d.pc.tpv;
+    const tG    = d.ob.ganhos + d.ib.ganhos + d.pc.ganhos;
+    const duRest = Math.max(1, M.du - d.du);
+    const rolProj = d.du > 0 ? Math.round(tRol / d.du * M.du) : 0;
+    const falta   = Math.max(0, M.total.rol - tRol);
+    const diaNec  = Math.round(falta / duRest);
+    const tpvDia  = d.du > 0 ? Math.round(tTpv / d.du) : 0;
+    const gpP     = Math.min(100, Math.round(tRol / M.total.rol * 100));
+
+    document.getElementById('gpFill').style.width  = gpP + '%';
+    document.getElementById('gpPct').textContent   = gpP + '%';
+    document.getElementById('gpMarker').style.left = Math.min(97, d.du / M.du * 100) + '%';
+
+    const rolRitmo = d.du > 0 ? Math.round(tRol / d.du) : 0;
+    const rolProjecao = d.du > 0 ? Math.round(tRol / d.du * M.du) : 0;
+    const salRitmo = d.du > 0 ? Math.round(d.pv.sal / d.du) : 0;
+
+    document.getElementById('rolReal').textContent = fmt(tRol);
+    document.getElementById('rolPct').textContent  = pct(tRol, M.total.rol) + ' da meta';
+    document.getElementById('rolFalta').textContent = fmt(falta);
+    document.getElementById('rolDia').textContent   = fmt(diaNec) + '/dia necessário';
+    document.getElementById('rolRitmo').textContent = d.du > 0 ? fmt(rolProjecao) : '—';
+    document.getElementById('rolRitmoSub').textContent = d.du > 0 ? fmt(rolRitmo) + '/dia · ritmo atual' : 'mantendo ritmo atual';
+    document.getElementById('rolSal').textContent   = d.pv.sal;
+    document.getElementById('salRitmo').textContent = d.du > 0 ? String(Math.round(d.pv.sal / d.du * M.du)) : '—';
+    document.getElementById('salRitmoSub').textContent = d.du > 0 ? 'projeção · meta 897' : 'por dia útil';
+
+    document.getElementById('cTpv').textContent       = fmt(tTpv);
+    document.getElementById('cTpvBar').style.width    = bw(tTpv, M.total.tpv);
+    document.getElementById('cGanhos').textContent    = tG;
+    document.getElementById('cGanhosBar').style.width = bw(tG, M.total.ganhos);
+
+    function atingColor(v) {
+      if (v >= 100) return '#44ee88';
+      if (v >= 75)  return '#ffc93c';
+      return '#ff5555';
+    }
+
+    function ra(p, a, m) {
+      const proj     = DATA.du > 0 ? Math.round(a.rol / DATA.du * M.du) : 0;
+      const atingReal = DATA.du > 0 ? Math.min(999, Math.round(a.rol / m.rol * 100)) : 0;
+      const atingProj = DATA.du > 0 ? Math.min(999, Math.round(proj   / m.rol * 100)) : 0;
+      const projColor = atingColor(atingProj);
+
+      document.getElementById(p + 'Proj').textContent        = DATA.du > 0 ? fmt(proj) : '—';
+      document.getElementById(p + 'Proj').style.color        = DATA.du > 0 ? projColor : 'var(--txt3)';
+      document.getElementById(p + 'Rol').textContent         = fmt(a.rol);
+      document.getElementById(p + 'Pct').textContent         = atingReal + '% da meta';
+      document.getElementById(p + 'Bar').style.width         = bw(a.rol, m.super || m.rol);
+      const barPctEl = document.getElementById(p + 'BarPct');
+      if (barPctEl) barPctEl.textContent = atingReal > 3 ? atingReal + '%' : '';
+      document.getElementById(p + 'Tpv').textContent         = fmt(a.tpv);
+      document.getElementById(p + 'TpvBar').style.width      = bw(a.tpv, m.tpv);
+      document.getElementById(p + 'Ganhos').textContent      = a.ganhos;
+      document.getElementById(p + 'GanhosBar').style.width   = bw(a.ganhos, m.ganhos);
+      document.getElementById(p + 'AtingReal').textContent   = DATA.du > 0 ? atingReal + '%' : '—';
+      document.getElementById(p + 'AtingReal').style.color   = 'var(--txt)';
+      document.getElementById(p + 'AtingProj').textContent   = DATA.du > 0 ? atingProj + '%' : '—';
+      document.getElementById(p + 'AtingProj').style.color   = DATA.du > 0 ? projColor : 'var(--txt3)';
+      setS(p + 'Status', a.rol, m.rol);
+    }
+    ra('ob', d.ob, M.ob);
+    ra('ib', d.ib, M.ib);
+    ra('pc', d.pc, M.pc);
+
+    const pvProjVal    = DATA.du > 0 ? Math.round(d.pv.sal / DATA.du * M.du) : 0;
+    const pvAtingReal  = DATA.du > 0 ? Math.min(999, Math.round(d.pv.sal / M.pv.sal * 100)) : 0;
+    const pvAtingProj  = DATA.du > 0 ? Math.min(999, Math.round(pvProjVal / M.pv.sal * 100)) : 0;
+    const pvProjColor  = atingColor(pvAtingProj);
+    document.getElementById('pvProj').textContent      = DATA.du > 0 ? String(pvProjVal) : '—';
+    document.getElementById('pvProj').style.color      = DATA.du > 0 ? pvProjColor : 'var(--txt3)';
+    document.getElementById('pvSal').textContent       = d.pv.sal;
+    document.getElementById('pvPct').textContent       = pvAtingReal + '% da meta';
+    document.getElementById('pvBar').style.width       = bw(d.pv.sal, M.pv.sal);
+    const pvBarPct = document.getElementById('pvBarPct');
+    if (pvBarPct) pvBarPct.textContent = pvAtingReal > 3 ? pvAtingReal + '%' : '';
+    document.getElementById('pvHoje').textContent      = d.pv.hoje || '—';
+    document.getElementById('pvHojeBar').style.width   = bw(d.pv.hoje || 0, 39);
+    document.getElementById('pvFalta').textContent     = Math.max(0, M.pv.sal - d.pv.sal);
+    document.getElementById('pvDuRest').textContent    = Math.max(0, M.du - DATA.du);
+    document.getElementById('pvAtingReal').textContent = DATA.du > 0 ? pvAtingReal + '%' : '—';
+    document.getElementById('pvAtingReal').style.color = 'var(--txt)';
+    document.getElementById('pvAtingProj').textContent = DATA.du > 0 ? pvAtingProj + '%' : '—';
+    document.getElementById('pvAtingProj').style.color = DATA.du > 0 ? pvProjColor : 'var(--txt3)';
+    setS('pvStatus', d.pv.sal, M.pv.sal);
+  }
+
+  function scale() {
+    const r = document.getElementById('tvRoot');
+    const scaleX = window.innerWidth / 1920;
+    const scaleY = window.innerHeight / 1080;
+    const s = Math.min(scaleX, scaleY);
+    r.style.transform = `scale(${s})`;
+    r.style.transformOrigin = 'top left';
+    r.style.width = '1920px';
+    document.body.style.width = window.innerWidth + 'px';
+    document.body.style.height = window.innerHeight + 'px';
+  }
+
+  render();
+  scale();
+  window.addEventListener('resize', scale);
+</script>
+</body>
+</html>
